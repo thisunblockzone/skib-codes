@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-  <base href="https://raw.githack.com/thisunblockzone/skib-codes/main/twerk-race/">
+  <base href="https://raw.githack.com/thisunblockzone/skib-codes/main/twerk-race/index.html">
 <html lang="en-us">
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Runner Template</title>
+  <title>Twerk Race 3D</title>
   <link rel="shortcut icon" href="TemplateData/favicon.ico"/>
   <link rel="stylesheet" href="TemplateData/style.css"/>
-  
-  <!-- Yandex Games SDK -->
+
+  <!-- Yandex SDK (Optional) -->
   <script src="https://raw.githack.com/gn-math/assets/main/yandex-sdk.js"></script>
 </head>
 <body class="dark">
@@ -17,10 +17,10 @@
     <canvas id="unity-canvas"></canvas>
   </div>
 
-  <div id="loading-cover" style="display:none;">
+  <div id="loading-cover">
     <div id="unity-loading-bar">
       <div id="unity-logo"><img src="logo.png"/></div>
-      <div id="unity-progress-bar-empty" style="display: none;">
+      <div id="unity-progress-bar-empty">
         <div id="unity-progress-bar-full"></div>
       </div>
       <div class="spinner"></div>
@@ -28,17 +28,16 @@
   </div>
 
   <script>
-    const hideFullScreenButton = "";
     const buildUrl = "Build";
     const loaderUrl = buildUrl + "/TwerkRace.loader.js";
     const config = {
-      dataUrl: buildUrl + "/c86af6680382d4e84064160e72058923.data.br",
-      frameworkUrl: buildUrl + "/ae9cb1252b1485f36c41624a1137c5db.js.br",
-      codeUrl: buildUrl + "/8bd8d556a1c0e4a44c62c319f83458a9.wasm.br",
+      dataUrl: buildUrl + "/TwerkRace.data",
+      frameworkUrl: buildUrl + "/TwerkRace.framework.js",
+      codeUrl: buildUrl + "/TwerkRace.wasm",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Butcher’s Games",
-      productName: "Runner Template",
-      productVersion: "0.01",
+      productName: "Twerk Race 3D",
+      productVersion: "1.0",
     };
 
     const container = document.querySelector("#unity-container");
@@ -46,38 +45,32 @@
     const loadingCover = document.querySelector("#loading-cover");
     const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
     const progressBarFull = document.querySelector("#unity-progress-bar-full");
-    const spinner = document.querySelector('.spinner');
+    const spinner = document.querySelector(".spinner");
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
       container.className = "unity-mobile";
     }
 
-    canvas.style.background = "url('background.jpg') center / cover";
+    canvas.style.background = "url('background.jpg') center / cover no-repeat";
     loadingCover.style.display = "";
-
-    canvas.addEventListener("touchstart", () => { window.focus() });
-    canvas.addEventListener("pointerdown", () => { window.focus() });
 
     let myGameInstance = null;
 
-    // Load Unity loader script dynamically
     const script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
         spinner.style.display = "none";
-        progressBarEmpty.style.display = "";
+        progressBarEmpty.style.display = "block";
         progressBarFull.style.width = `${100 * progress}%`;
       }).then((unityInstance) => {
         myGameInstance = unityInstance;
         loadingCover.style.display = "none";
       }).catch((message) => {
-        alert(message);
+        alert("Failed to load Unity: " + message);
       });
     };
     document.body.appendChild(script);
   </script>
-
-  <!-- Your existing Yandex SDK integration JS would continue here if needed -->
 </body>
 </html>
