@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <base href="https://raw.githack.com/thisunblockzone/skib-codes/main/aaa-twerk-racd/352374/b2umhesxklwofye93skjfzo11t6x48zn/">
 <html lang="en-us">
@@ -10,6 +11,19 @@
 <!-- Yandex Games SDK -->
 <script src="sdk.js"></script>
 <script src="https://raw.githack.com/gn-math/assets/main/yandex-sdk.js"></script>
+<script src="https://yandex.ru/games/sdk/v2"></script>
+
+
+<script>
+  window.onload = function () {
+    YaGames.init().then(ysdk => {
+      console.log('Yandex SDK initialized', ysdk);
+      // Your SDK-related code here
+    });
+  };
+</script>
+
+
 <!-- Additional head modules -->
 </head>
 <body class="dark">
