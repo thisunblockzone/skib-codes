@@ -193,8 +193,8 @@
           const element = document.currentScript.parentElement;
 
           Promise.all([
-            import("_app/immutable/entry/start.420fd423.js"),
-            import("_app/immutable/entry/app.e972eff3.js"),
+            import("./_app/immutable/entry/start.420fd423.js"),
+            import("./_app/immutable/entry/app.e972eff3.js"),
           ]).then(([kit, app]) => {
             kit.start(app, element);
           });
